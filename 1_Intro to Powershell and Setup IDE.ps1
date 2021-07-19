@@ -24,7 +24,7 @@
 # Windows Powershell ISE (Windows Only)
 # Visual Studio Code (Cross Platform)
 
-# Extensions for VS Code
+# Extensions for VS Code (How to install?)
 #   - Powershell
 #   - Rainbow Brackets
 #   - Settings Sync

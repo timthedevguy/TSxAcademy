@@ -4,6 +4,7 @@
 #   session still show in autocomplete and auto load the module
 #   if you use the command.  Modules are still session based.
 #   Can prove using Get-Module
+# How to install extensions in VSCode!!!
 
 
 # -------------------------------------------------------

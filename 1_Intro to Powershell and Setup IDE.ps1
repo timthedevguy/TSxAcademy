@@ -38,10 +38,10 @@
 
 # F5 Runs Entire Script
 Write-Output "First Message"
-break
+
 # F8 Runs Line or Selection under Cursor
 Write-Output "Second Message"
-break
+
 $name = "Tim Davis"
 Write-Output "My name is $($name)"
 
@@ -50,7 +50,7 @@ Write-Output "My name is $($name)"
 # -------------------------------------------------------
 # If you are using the IDE to test lines of code you can 
 # breaks to prevent entire script from being ran on accident
-break
+
 Write-Output "Third Message"
 
 # -------------------------------------------------------
@@ -70,3 +70,4 @@ Write-Output "Third Message"
 # Getting Help
 # -------------------------------------------------------
 Get-Help -Name CMDLET_NAME 
+

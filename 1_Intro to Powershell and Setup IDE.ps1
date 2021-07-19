@@ -38,10 +38,10 @@
 
 # F5 Runs Entire Script
 Write-Output "First Message"
-
+break
 # F8 Runs Line or Selection under Cursor
 Write-Output "Second Message"
-
+break
 $name = "Tim Davis"
 Write-Output "My name is $($name)"
 

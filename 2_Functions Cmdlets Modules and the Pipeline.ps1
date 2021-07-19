@@ -1,3 +1,11 @@
+# Touch on Git and Github
+# Forgot to say what PowerShell was actually designed for
+# Since PoSh 3.0 CmdLets from Modules NOT actively loaded in
+#   session still show in autocomplete and auto load the module
+#   if you use the command.  Modules are still session based.
+#   Can prove using Get-Module
+
+
 # -------------------------------------------------------
 # Functions
 # -------------------------------------------------------

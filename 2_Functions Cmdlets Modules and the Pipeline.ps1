@@ -136,3 +136,6 @@ Get-Date | Select-Object Month
 # Select-Object selects the Property 'Month' and pushes it to the pipeline,
 # and since there is no more pipe to push through it is returned to the terminal.
 
+
+# Tomas
+# https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/locked-loaded-and-in-the-wrong-hands-legitimate-tools-weaponized-for-ransomware-in-2021

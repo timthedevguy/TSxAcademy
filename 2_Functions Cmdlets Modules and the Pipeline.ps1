@@ -5,11 +5,12 @@
 #   if you use the command.  Modules are still session based.
 #   Can prove using Get-Module
 
-# Weekend Practice
+# Weekend Practice coming on Fridays
 
 # -------------------------------------------------------
 # Commenting your Code
 # -------------------------------------------------------
+# Comment
 
 # -------------------------------------------------------
 # Rubber Duck Debugging
@@ -70,13 +71,16 @@ Function Get-NextMonth {
     [CmdletBinding()]       # <- CmdLetBinding Attribute
     Param()                 # <- Parameters Attribute
 
-    Write-Verbose  -Message "Getting Next Month..."  # <- Write Verbose will only output to screen if -Verbose is passed
+    Write-Verbose  -Message "Getting Next Month..."  # <- Write Verbose will only output to screen if -Verbose is passed    
     return (Get-Date).AddMonths(1)
 }
 
 Function Get-NextMonth {
     [CmdletBinding()]           # <- CmdLetBinding Attribute
-    Param([Int]$Months = 1)     # <- Parameters Attribute
+    Param(
+        [Parameter(Mandatory = $true)]
+        [Int]$Months
+    )     # <- Parameters Attribute
 
     Write-Verbose  -Message "Getting $($Months) Months..."  # <- Write Verbose will only output to screen if -Verbose is passed
     Write-Debug -Message "This is a debug message"          # <- Write-Debug will only output to screen if -Debug is passed
@@ -100,6 +104,8 @@ Function Get-NextMonth {
 # you can use them over and over again.
 
 Import-Module -Name AzureAD
+
+Remove-Module -Name AzureAD
 
 # To see what commands are available after importing a Module use
 
@@ -131,6 +137,7 @@ Get-Command | Where-Object {$_.Name -like "*EventLog*"}
 # Items are passed through the pipeline using the pipe character '|'
 
 Get-Date | Select-Object Month
+$today = Get-Date
 
 # The results of Get-Date are pushed through the Pipeline to Select-Object
 # Select-Object selects the Property 'Month' and pushes it to the pipeline,

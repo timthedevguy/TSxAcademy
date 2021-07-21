@@ -4,14 +4,23 @@
 #   session still show in autocomplete and auto load the module
 #   if you use the command.  Modules are still session based.
 #   Can prove using Get-Module
-# How to install extensions in VSCode!!!
 
+# Weekend Practice
+
+# -------------------------------------------------------
+# Commenting your Code
+# -------------------------------------------------------
+
+# -------------------------------------------------------
+# Rubber Duck Debugging
+# -------------------------------------------------------
 
 # -------------------------------------------------------
 # Functions
 # -------------------------------------------------------
 # Functions are reusable blocks of code that perform a 
-# specific purpose or action
+# specific purpose or action.  If you find yourself writing
+# the same code again then it should probably be a function!
 Function Get-NextMonth {
     return (Get-Date).AddMonths(1)
 }
@@ -29,19 +38,49 @@ $newDate = Get-NextMonth
 # CmdLets are reusable blocks of code, these are the main
 # building blocks of PowerShell.  Get-Date is a CmdLet.
 
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute?view=powershell-5.1
+
 # CmdLets and Functions seem very similar on the surface but
 # CmdLets provide additional argument support such as -WhatIf
 # and -Verbose (there are others)
+# 
+
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_commonparameters?view=powershell-5.1
+
+# -- Common Params --
+# -Verbose
+# -ErrorAction
+# -WhatIf
+
+# -- Other Params --
+# -Debug
+# -WarningAction
+# -InformationAction
+# -ErrorVariable
+# -WarningVariable
+# -InformationVariable
+# -OutVariable
+# -OutBuffer
+# -PipelineVariable
 
 # To make things confusing, any Function can be turned in to
 # a CmdLet by adding CmdletBinding
 
 Function Get-NextMonth {
-    [CmdletBinding()]   # <- CmdLetBinding Attribute
-    Param()             # <- Parameters Attribute
+    [CmdletBinding()]       # <- CmdLetBinding Attribute
+    Param()                 # <- Parameters Attribute
 
     Write-Verbose  -Message "Getting Next Month..."  # <- Write Verbose will only output to screen if -Verbose is passed
     return (Get-Date).AddMonths(1)
+}
+
+Function Get-NextMonth {
+    [CmdletBinding()]           # <- CmdLetBinding Attribute
+    Param([Int]$Months = 1)     # <- Parameters Attribute
+
+    Write-Verbose  -Message "Getting $($Months) Months..."  # <- Write Verbose will only output to screen if -Verbose is passed
+    Write-Debug -Message "This is a debug message"          # <- Write-Debug will only output to screen if -Debug is passed
+    return (Get-Date).AddMonths($Months)
 }
 
 # -------------------------------------------------------
@@ -66,6 +105,7 @@ Import-Module -Name AzureAD
 
 Get-Command -Module AzureAD
 
+# Show ActiveDirectory Module on my MGMT01
 
 # -------------------------------------------------------
 # PowerShell Pipeline
@@ -83,4 +123,5 @@ Get-Date | Select-Object Month
 
 # The results of Get-Date are pushed through the Pipeline to Select-Object
 # Select-Object selects the Property 'Month' and pushes it to the pipeline,
-# and since there is no pipeline it is returned to the terminal.
+# and since there is no more pipe to push through it is returned to the terminal.
+

@@ -105,6 +105,17 @@ Import-Module -Name AzureAD
 
 Get-Command -Module AzureAD
 
+
+# -------------------------------------------------------
+# Finding Commands
+# -------------------------------------------------------
+Get-Command | Where-Object {$_.Name -like "*EventLog*"}
+
+# -------------------------------------------------------
+# Reading the in terminal Help/Microsoft Help Webpage
+# -------------------------------------------------------
+# How to read the help docs, param sets
+
 # Show ActiveDirectory Module on my MGMT01
 
 # -------------------------------------------------------

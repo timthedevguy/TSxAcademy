@@ -107,6 +107,8 @@ $today = Get-Date
 $today | Get-Member
 "Tim Davis" | Get-Member
 
+$log = Get-EventLog -LogName System -Newest 1
+
 # -------------------------------------------------------
 # What is it???
 # -------------------------------------------------------
@@ -117,3 +119,13 @@ $today | Get-Member
 $today.GetType()
 $age.GetType()
 $name.GetType()
+
+# -------------------------------------------------------
+# Special Variables
+# -------------------------------------------------------
+# $_
+# $Error
+# $Input
+# $null
+
+# https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_automatic_variables?view=powershell-5.1

@@ -40,6 +40,10 @@ $NAME
 # lowercase - Used for local variables
 # UPPERCASE - Used for Constants (I don't see these used much)
 
+$ComputerName = "BOB"
+$name = "Tim Davis"
+
+
 # -------------------------------------------------------
 # Strings
 # -------------------------------------------------------
@@ -47,7 +51,7 @@ $NAME
 # Strings with "" are Expandable Strings whereas '' are 
 # literal strings.
 
-# Expandable strings can contain $ varaiables and PowerShell
+# Expandable strings can contain $ variables and PowerShell
 # will evaluate those while processing the string.
 
 # Literal strings do not get evaluated in anyway, ie: What You See
@@ -66,13 +70,14 @@ Write-Output "The current month number value is $(Get-Date | Select-Object Month
 # Alot of times this isn't needed unless using complex statements, but it's a good habit to use $() as this ensures PowerShell doesn't
 # translate the object in a funky manner.
 
-Write-Output "My name is $name"
-Write-Output "The current month number value is Get-Date | Select-Object Month -ExpandProperty Month"
+Write-Output "My name is $($name)"
+Write-Output "The current month number value is $(Get-Date | Select-Object Month -ExpandProperty Month)"
 
 # Strings are Objects!  This means they have properties and methods just like a normal object
 
 $name.Length
 $name.ToUpper()
+
 
 # You can even do it with straight Text
 
@@ -93,7 +98,10 @@ Write-Output "My age is $age"
 Write-Output "My age is $($age)"
 Write-Output "My age is $($age.ToString())"
 
-$age = 40 + 1
+$age = (2+1)*3
+$age.GetType()
+
+[Int64]$new_age = 41
 
 # -------------------------------------------------------
 # and More
@@ -101,6 +109,9 @@ $age = 40 + 1
 # Dates are a super common object to work with
 
 $today = Get-Date
+$now = Get-Date
+
+($now -lt $today)
 
 # How to see what you Properties/Methods an Object has?
 
@@ -108,6 +119,9 @@ $today | Get-Member
 "Tim Davis" | Get-Member
 
 $log = Get-EventLog -LogName System -Newest 1
+
+$log | Get-Member
+$log.GetType()
 
 # -------------------------------------------------------
 # What is it???
@@ -123,7 +137,7 @@ $name.GetType()
 # -------------------------------------------------------
 # Special Variables
 # -------------------------------------------------------
-# $_
+# $_, ForEach-Object, Where-Object, Try/Catch Block
 # $Error
 # $Input
 # $null

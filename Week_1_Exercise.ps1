@@ -49,3 +49,10 @@ break
 # and examples)  You will utilize knowledge of variables, 
 # expandable strings and the Write-Host or Write-Output
 # from above
+
+# Example
+# What is your name?
+# Hello Tim, how old are you?
+# Holy cow, 41, man you are old!
+
+# Have fun with it!

@@ -56,3 +56,7 @@ break
 # Holy cow, 41, man you are old!
 
 # Have fun with it!
+
+$name = Read-Host -Prompt "What is your name?"
+$age = Read-Host -Prompt "Hello $($name), how old are you?"
+Write-Output "Holy cow $($name), are you really $($age)?"

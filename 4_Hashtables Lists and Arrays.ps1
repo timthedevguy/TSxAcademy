@@ -6,16 +6,45 @@
 # throw the object in a container to pull it out later
 
 # -------------------------------------------------------
+# Arrays
+# -------------------------------------------------------
+# Arrays are a simple collection of objects in PowerShell.
+# These are simpler than a List and are generally used instead 
+# of Lists.  These objects can be anything
+
+# Creating an Array
+
+$colors = @("Red", "Green", "Blue")
+$colors = "Red", "Green", "Blue"
+
+# Items are accessed via a 0 index list, this means first item is index 0
+
+$colors[0]
+$colors[1]
+$colors[2]
+$colors[3]
+
+# Adding item to array
+
+$colors += "Yellow"
+
+# Remove item from an array
+
+$colors = $colors | Where-Object {$_ -ne "Blue"}  # <- Technically this recreates the array with all items BUT the "Blue"
+
+# Lists are much more efficient at working with large sets of data, consider using them instead of plain Arrays
+
+# -------------------------------------------------------
 # Hashtables
 # -------------------------------------------------------
-# Hashtables are a collection of Key <-> Value pairs.  PowerShell
+# Hashtables are a collection of Key <-> Value pairs. (Dictionary)  PowerShell
 # is great in that it lets you create these on the fly and access
 # them with either . notation or [] notation.  
 
 $hash = @{
-    Item1 = "Item_1"
-    Item2 = "Item_2"
-    Item3 = "Item_3"
+    Item1 = "First Item"
+    Item2 = "Second Item"
+    Item3 = "Third Item"
 }
 
 # Hashtable items are accessed by the Key or by Property with the 
@@ -26,7 +55,7 @@ $hash["Item1"]
 
 # Adding an item to a Hashtable
 
-$hash["Item4"] = "Item_4"
+$hash["Item4"] = "Fourth Item"
 
 # Removing item from a Hashtable
 
@@ -36,9 +65,9 @@ $hash.Remove("Item2")
 # an ordered Hashtable like so
 
 $hash = [ordered]@{
-    Item1 = "Item_1"
-    Item2 = "Item_2"
-    Item3 = "Item_3"
+    Item1 = "First Item"
+    Item2 = "Second Item"
+    Item3 = "Third Item"
 }
 
 # -------------------------------------------------------
@@ -72,33 +101,6 @@ $objects.Add((Get-Date))
 $objects[2].GetType()
 
 # -------------------------------------------------------
-# Arrays
-# -------------------------------------------------------
-# Arrays are a simple collection of objects in PowerShell.
-# These are simpler than a List and are generally used instead 
-# of Lists.  These objects can be anything
-
-$colors = @("Red", "Green", "Blue")
-$colors = "Red", "Green", "Blue"
-
-# Items are accessed via a 0 index list, this means first item is index 0
-
-$colors[0]
-$colors[1]
-$colors[2]
-$colors[3]
-
-# Adding item to array
-
-$colors += "Yellow"
-
-# Remove item from an array
-
-$colors = $colors | Where-Object {$_ -ne "Blue"}  # <- Technically this recreates the array with all items BUT the "Blue"
-
-# Lists are much more efficient at working with large sets of data, consider using them instead of plain Arrays
-
-# -------------------------------------------------------
 # Sample Array/List Operations
 # -------------------------------------------------------
 
@@ -111,3 +113,35 @@ $colors.ToUpper()
 $colors.ToUpper() | ForEach-Object {
     Write-Output "The current color is: $($_)"
 }
+
+# -------------------------------------------------------
+# Hashtable to PSCustomObject
+# -------------------------------------------------------
+# The biggest difference is output when formatting to screen
+# or file.  This type of conversion you will see quite often
+
+# Create hash table
+
+$hash = [ordered]@{
+    Item1 = "Item_1"
+    Item2 = "Item_2"
+    Item3 = "Item_3"
+}
+
+# Create PSCustomObject from Hashtable (Quick Way)
+$obj = New-Object -TypeName PSCustomObject -Property $hash
+$obj | Get-Member
+
+# Create PSCustomObject (Long Way)
+$obj = New-Object -TypeName PSCustomObject
+$obj | Add-Member -NotePropertyName Item1 -NotePropertyValue "Item_1"
+$obj | Add-Member -NotePropertyName Item2 -NotePropertyValue "Item_2"
+$obj | Add-Member -NotePropertyName Item3 -NotePropertyValue "Item_3"
+
+# Display to screen
+$hash | Format-Table
+$obj | Format-Table
+
+# Export to CSV
+$hash | Export-Csv -Path .\hash_csv.csv -NoTypeInformation
+$obj | Export-Csv -Path .\obj_csv.csv -NoTypeInformation

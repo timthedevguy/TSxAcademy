@@ -16,6 +16,7 @@
 
 $colors = @("Red", "Green", "Blue")
 $colors = "Red", "Green", "Blue"
+$colors.RemoveAt(0)
 
 # Items are accessed via a 0 index list, this means first item is index 0
 
@@ -30,7 +31,7 @@ $colors += "Yellow"
 
 # Remove item from an array
 
-$colors = $colors | Where-Object {$_ -ne "Blue"}  # <- Technically this recreates the array with all items BUT the "Blue"
+$colors = $colors | Where-Object {$_ -ne "Yellow"}  # <- Technically this recreates the array with all items BUT the "Blue"
 
 # Lists are much more efficient at working with large sets of data, consider using them instead of plain Arrays
 
@@ -45,21 +46,23 @@ $hash = @{
     Item1 = "First Item"
     Item2 = "Second Item"
     Item3 = "Third Item"
+    MyItem = Get-Date
 }
 
 # Hashtable items are accessed by the Key or by Property with the 
 # same name as they Key
 
-$hash.Item1
-$hash["Item1"]
+$hash.MyItem
+$hash["MyItem"]
+
 
 # Adding an item to a Hashtable
 
-$hash["Item4"] = "Fourth Item"
+$hash["lkjasdflhkasdf"] = "Fourth Item"
 
 # Removing item from a Hashtable
 
-$hash.Remove("Item2")
+$hash.Remove(0)
 
 # Hashtables have no order by default, if Order matters you can create
 # an ordered Hashtable like so
@@ -98,7 +101,7 @@ $objects.Add("Test")
 $objects.Add(31)
 $objects.Add((Get-Date))
 
-$objects[2].GetType()
+$objects[2].Year
 
 # -------------------------------------------------------
 # Sample Array/List Operations
@@ -107,6 +110,7 @@ $objects[2].GetType()
 $colors | ForEach-Object {
     Write-Output "The current color is: $($_)"
 }
+$colors.GetType()
 
 $colors.ToUpper()
 
@@ -127,6 +131,8 @@ $hash = [ordered]@{
     Item2 = "Item_2"
     Item3 = "Item_3"
 }
+
+$hash["Tim"] = "Davis"
 
 # Create PSCustomObject from Hashtable (Quick Way)
 $obj = New-Object -TypeName PSCustomObject -Property $hash

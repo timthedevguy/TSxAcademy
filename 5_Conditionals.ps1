@@ -83,6 +83,31 @@ if($sample -eq 3) {
 }
 
 # -------------------------------------------------------
+# Or Not?!?
+# -------------------------------------------------------
+# If you have a variable holding a boolean or function that
+# returns a boolean then you can do if() without comparison
+# operator
+
+Function Test-Me {
+    return $false
+}
+
+if(Test-Me) {
+    Write-Output "Function is True"
+} else {
+    Write-Output "Function is False"
+}
+
+$myBool = $true
+
+if($myBool) {
+    Write-Output "Value is True"
+} else {
+    Write-Output "Value is False"
+}
+
+# -------------------------------------------------------
 # Testing
 # -------------------------------------------------------
 # You can test by omitting the IF and just typing

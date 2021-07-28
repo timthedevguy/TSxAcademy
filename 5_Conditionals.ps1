@@ -90,18 +90,18 @@ if($sample -eq 3) {
 # operator
 
 Function Test-Me {
-    return $false
+    return $true
 }
 
-if(Test-Me) {
-    Write-Output "Function is True"
+if(Test-Path -Path "C:\Temp") {
+    Write-Output "Path Exists"
 } else {
-    Write-Output "Function is False"
+    Write-Output "Path does not exist"
 }
 
-$myBool = $true
+$myBool = $false
 
-if($myBool) {
+if(!$myBool) {
     Write-Output "Value is True"
 } else {
     Write-Output "Value is False"
@@ -113,6 +113,73 @@ if($myBool) {
 # You can test by omitting the IF and just typing
 # the ($sample -eq 1)
 
-($sample -eq 1)
+!($sample -eq 1)
 
 # PowerShell will spit out True or False
+
+# -------------------------------------------------------
+# -AND -Or
+# -------------------------------------------------------
+$sample = 2
+
+if(($sample -gt 4 -or $sample -lt 10) -and ($sample -gt 1)) {
+    Write-Output "Sample is good!"
+}
+
+T T = T
+AND(T T T T T T F) = F
+OR(T F T) = T
+
+
+$colors = "Red", "Blue", "Green"
+
+if($colors -like "*Blue*") {
+    Write-Output "Didn't find it"
+}
+
+$today = Get-Date
+
+$dates = New-Object -TypeName System.Collections.Generic.List[PSObject]
+$dates.Add((Get-Date))
+$dates.Add($today)
+
+if($dates -like $today) {
+    Write-Output "Found today"
+}
+
+$logs = Get-EventLog -LogName System -Newest 5
+
+if($logs.Message -like "*DCOM*") {
+    Write-Output "Found"
+}
+
+$today.ToString()
+$age = 41
+$age.ToString()
+
+$hash = @{
+    one = "one"
+    two = "two"
+}
+
+$hash.ToString()
+
+$colors.ToString()
+
+
+# -------------------------------------------------------
+# Switch
+# -------------------------------------------------------
+
+$value = "bob"
+
+switch($value) {
+    "tim" {
+        
+    } 
+    "bob" {
+        Test-Me
+    }
+    "charlie" {"three"}
+    default {"default"}
+}

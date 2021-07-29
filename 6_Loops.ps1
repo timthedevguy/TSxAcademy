@@ -72,3 +72,7 @@ $colors = "Red", "Green", "Blue"
 $colors | ForEach-Object {
     Write-Output "Current color is $($_)"
 }
+
+(1..10) | ForEach-Object {
+    Write-Output "Current index is $($_)"
+}

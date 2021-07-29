@@ -16,7 +16,7 @@
 # DO runs code at least once before checking the condition
 # WHILE checks condition and then runs code if True
 
-$sample = 1
+$sample = 2
 
 do {
     $sample++  # <- ++ is shorthand for $sample = $sample + 1
@@ -25,6 +25,11 @@ do {
 
 while($sample -eq 2) {
     Write-Output "While Loop Ran"
+}
+
+while($sample -gt 1 -and $sample -lt 10 ) {
+    Write-Output "While Loop Ran for sample #$($sample)"
+    $sample++
 }
 
 $sample = 1

@@ -25,6 +25,7 @@ do {
 
 while($sample -eq 2) {
     Write-Output "While Loop Ran"
+    $sample++
 }
 
 while($sample -gt 1 -and $sample -lt 10 ) {
@@ -47,7 +48,11 @@ for($counter = 0;$counter -le 10;$counter++) {
     Write-Output "For Loop Ran, counter is $($counter)"
 }
 
+$colors = "Red", "Blue", "Green"
 
+for($counter = 0;$counter -lt $colors.Count;$counter++) {
+    Write-Output "Counter is $($counter) and color is $($colors[$counter])"
+}
 
 # -------------------------------------------------------
 # Foreach
@@ -56,8 +61,8 @@ for($counter = 0;$counter -le 10;$counter++) {
 
 $colors = "Red", "Green", "Blue"
 
-foreach($color in $colors) {
-    Write-Output "Current color is $($color)"
+foreach($bob in $colors) {
+    Write-Output "Current color is $($bob)"
 }
 
 # -------------------------------------------------------
@@ -73,6 +78,6 @@ $colors | ForEach-Object {
     Write-Output "Current color is $($_)"
 }
 
-(1..10) | ForEach-Object {
-    Write-Output "Current index is $($_)"
+(0..$colors.Count) | ForEach-Object {
+    Write-Output "Current colors is $($colors[$_])"
 }

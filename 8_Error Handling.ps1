@@ -44,3 +44,9 @@ $ErrorActionPreference = 'Stop'
 $ErrorActionPreference = 'Continue'
 
 # $_ Meaning in Try Catch
+
+# -------------------------------------------------------
+# Poluting the Pipeline
+# -------------------------------------------------------
+New-Item -ItemType Directory -Path "C:\TimDavis"
+Write-Output "Something here"

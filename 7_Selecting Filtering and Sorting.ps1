@@ -13,13 +13,27 @@ Get-Date | Select-Object Month, Day, Year
 
 Get-PSDrive | Select-Object Name,Provider
 
+$results = New-Object -TypeName System.Collections.Generic.List[PSObject]
+(1..10) | ForEach-Object {
+    $hash = @{
+        Prop1 = "Tim"
+        Prop2 = "Davis"
+    }
+    $obj = New-Object -TypeName PSCustomObject -Property $hash
+    $results.Add($obj)
+}
+
 # -------------------------------------------------------
 # Filtering
 # -------------------------------------------------------
 # Where-Object lets you filter based on properties you specifiy
 
 Get-PSDrive
-Get-PSDrive | Where-Object {$_.Provider.Name -eq "Registry"}
+$regDrives = Get-PSDrive | Where-Object {$_.Provider.Name -eq "Registry"}
+
+Get-PSDrive | Select-Object Name, Provider | Where-Object {$_.Provider.Name -eq "Registry"}
+
+#Get-ChildItem -Path HKCU:\
 
 
 # -------------------------------------------------------
@@ -30,8 +44,10 @@ Get-PSDrive | Where-Object {$_.Provider.Name -eq "Registry"}
 
 # Sorting without using a property
 $colors | Sort-Object -Descending
-$colors | Sort-Object 
+$colors | Sort-Object
 
 # Sorting using a property
-Get-PSDrive | Select-Object Name,Provider | Sort-Object -Property Provider
+$drives2 = Get-PSDrive | Select-Object Name | Sort-Object -Property Provider
+
+$drives1 = Get-PSDrive | Select-Object Name -ExpandProperty Name
 

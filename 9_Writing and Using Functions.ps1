@@ -34,6 +34,8 @@ Function BoolToReadable {
     "No"
 }
 
+BoolToReadable -Current $true
+
 # Function with Advanced Parameters
 Function BoolToReadable {
     param(
@@ -48,6 +50,9 @@ Function BoolToReadable {
 
     "No"
 }
+
+BoolToReadable
+BoolToReadable -Current $false
 
 #Function with Advanced Parameter + Common Parameters
 Function BoolToReadable {
@@ -68,6 +73,9 @@ Function BoolToReadable {
     "No"
 }
 
+BoolToReadable
+BoolToReadable -Current $false
+BoolToReadable -Current $true -Verbose
 
 # -------------------------------------------------------
 # Example of Using

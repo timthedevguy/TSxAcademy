@@ -1,10 +1,16 @@
+$ErrorActionPreference = 'Stop'
 # -------------------------------------------------------
 # WHat is Error Handling?
 # -------------------------------------------------------
 # Catching and handling errors in your code gracefully
 
 $path = "HKU:\S-1-5-21-3301638634-1218776460-3821712850-2605\Network\Z"
-$test = Get-ItemPropertyValue -Path $path -Name "ProviderFlags"
+try {
+    $test = Get-ItemPropertyValue -Path $path -Name "ProviderFlags"
+} catch {
+    Write-Host "Create the missing data"
+}
+
 Write-Host "....The rest of your code...."
 
 # -------------------------------------------------------
@@ -40,7 +46,7 @@ try{
 }
 
 # Treat all errors as terminating
-$ErrorActionPreference = 'Stop'
+
 $ErrorActionPreference = 'Continue'
 
 # $_ Meaning in Try Catch

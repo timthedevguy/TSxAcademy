@@ -10,22 +10,23 @@ Function BoolToReadable {
 BoolToReadable
 
 # Simple Function with Arguments
-Function BoolToReadable($current) {
+Function BoolToReadable($current, $test) {
     if($current){
         return "Yes"
     }
-
+    $test
     "No"
 }
 
-BoolToReadable $true
+BoolToReadable $false "bob"
 
 # Function with Parameters
 Function BoolToReadable {
     param(
-        [bool] $Current
+        [bool] $Current,
+        [bool] $Test
     )
-
+    
     if($Current) {
         
         return "Yes"
@@ -42,7 +43,7 @@ Function BoolToReadable {
         [Parameter(Mandatory = $true)]
         [bool] $Current = $false
     )
-
+    Write-Verbose "Current Value is: $($Current.ToString())" -Verbose
     if($Current) {
         
         return "Yes"
@@ -62,7 +63,7 @@ Function BoolToReadable {
         [Parameter(Mandatory = $true)]
         [bool] $Current
     )
-
+    Write-Host "Verbose Var: $($VerbosePreference)"
     Write-Verbose "Current Value is: $($Current.ToString())"
 
     if($Current) {
@@ -80,7 +81,6 @@ BoolToReadable -Current $true -Verbose
 # -------------------------------------------------------
 # Example of Using
 # -------------------------------------------------------
-
 
 $userData = '[
     {
@@ -234,11 +234,11 @@ foreach($user in $users) {
     # Create a new Hashtable with the properties we want
     $hash = @{
         Name = $user.Name 
-        Enabled = BoolToReadable $user.Enabled    # <- Use function to do conversion over and over again
-        PasswordRequired = BoolToReadable $user.PasswordRequired
-        UserMayChangePassword = BoolToReadable $user.UserMayChangePassword
-        IsAdmin = BoolToReadable ($user.Name -in $adminGroup)   # <- Since function is expecting T/F we can use Conditionals
-        IsBuiltInAdmin = BoolToReadable ($user.Name -eq "Administrator")
+        Enabled = BoolToReadable -Current $user.Enabled    # <- Use function to do conversion over and over again
+        PasswordRequired = BoolToReadable -Current $user.PasswordRequired
+        UserMayChangePassword = BoolToReadable -Current $user.UserMayChangePassword
+        IsAdmin = BoolToReadable -Current ($user.Name -in $adminGroup)   # <- Since function is expecting T/F we can use Conditionals
+        IsBuiltInAdmin = BoolToReadable -Current ($user.Name -eq "Administrator")
     }
 
     # Create our new Object from the Hashtable

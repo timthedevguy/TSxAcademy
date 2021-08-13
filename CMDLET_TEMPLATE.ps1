@@ -9,12 +9,12 @@
     LINK
 
 .NOTES
-    FileName: Polutants.ps1
+    FileName: CMDLET_TEMPLATE.ps1
     Author: Author
     Contact: TwitterHandle
-    Created: 2021-08-12
+    Created: 2021-08-13
 
-    Version - 0.0.1 - 2021-08-12
+    Version - 0.0.1 - 2021-08-13
 
     License Info:
     MIT License
@@ -46,8 +46,5 @@
 [cmdletbinding()]
 param()
 begin{}
-process{
-    
-    Write-Verbose "IM HERE"
-    "10"
-}
+process{}
+end{}
